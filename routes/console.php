@@ -1,0 +1,13 @@
+<?php
+
+use Illuminate\Foundation\Inspiring;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
+
+Artisan::command('inspire', function () {
+    $this->comment(Inspiring::quote());
+})->purpose('Display an inspiring quote');
+
+// Scheduler: tagihan otomatis + reminder WA
+Schedule::command('tagihan:generate')->dailyAt('00:05');
+Schedule::command('tagihan:remind')->hourly();
