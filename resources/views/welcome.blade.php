@@ -1,238 +1,451 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }} - Landing Page</title>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSM.TV - Internet Service Provider Terpercaya</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
-    
-            <style>
-        body {
-            font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            600: '#4f46e5', // Indigo utama
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
+                        'glow': '0 0 15px rgba(79, 70, 229, 0.3)'
+                    }
+                }
+            }
         }
-            </style>
-    </head>
-<body class="bg-gray-50 min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-blue-600">
-                {{ config('app.name', 'Laravel') }}
+    </script>
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Accordion Animation */
+        .faq-content {
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .faq-content[aria-expanded="false"] { grid-template-rows: 0fr; }
+        .faq-content[aria-expanded="true"] { grid-template-rows: 1fr; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-brand-600 selection:text-white">
+
+    <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="{{ route('home') }}" class="text-2xl font-extrabold tracking-tighter text-slate-900">
+                CSM<span class="text-brand-600">.TV</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-10">
+                <a href="{{ route('home') }}" class="text-sm font-semibold text-brand-600">Beranda</a>
+                <a href="{{ route('about') }}" class="text-sm font-semibold text-slate-500 hover:text-brand-600 transition-colors">Tentang</a>
+                <a href="#paket" class="text-sm font-semibold text-slate-500 hover:text-brand-600 transition-colors">Paket Layanan</a>
             </div>
-            <div class="flex gap-4">
-            @if (Route::has('login'))
+
+            <div class="hidden md:flex items-center gap-4">
+                @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                            Dashboard
-                        </a>
+                        <a href="{{ url('/dashboard') }}" class="px-6 py-2.5 text-sm font-semibold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 hover:text-blue-600 transition">
-                            Masuk
-                        </a>
+                        <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-900 hover:text-brand-600">Masuk</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                Daftar
-                            </a>
+                            <a href="{{ route('register') }}" class="px-6 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-full hover:bg-brand-700 transition shadow-lg shadow-brand-600/20">Daftar</a>
                         @endif
                     @endauth
                 @endif
             </div>
-                </nav>
-        </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <section class="container mx-auto px-4 py-16 text-center">
-            <h1 class="text-5xl font-bold text-gray-900 mb-4">
-                Selamat Datang
-            </h1>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Platform terdepan untuk mengelola dan memantau aktivitas Anda dengan mudah dan efisien
-            </p>
-        </section>
+            <button class="md:hidden p-2 text-slate-900" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
 
-        <!-- Dashboard Cards Section -->
-        <section class="container mx-auto px-4 py-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Dashboard</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-blue-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl md:hidden">
+            <a href="{{ route('home') }}" class="block py-2 text-base font-medium text-brand-600">Beranda</a>
+            <a href="{{ route('about') }}" class="block py-2 text-base font-medium text-slate-600">Tentang</a>
+            <a href="#paket" class="block py-2 text-base font-medium text-slate-600">Paket Layanan</a>
+            <hr class="border-slate-100">
+            @guest
+                <a href="{{ route('login') }}" class="block w-full py-3 text-center border border-slate-200 rounded-lg font-bold text-slate-700">Masuk</a>
+                <a href="{{ route('register') }}" class="block w-full py-3 text-center bg-brand-600 text-white rounded-lg font-bold">Daftar Sekarang</a>
+            @endguest
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        
+        <section id="home" class="py-20 lg:py-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    
+                    <div class="order-2 lg:order-1">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-6">
+                            <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
+                            Promo Spesial
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Statistik</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Lihat statistik lengkap dan analitik data Anda dalam satu dashboard yang mudah dipahami.
-                    </p>
-                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">
-                        Lihat Detail →
-                    </a>
-                </div>
+                        <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+                            Paket Internet <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Premium & Cepat.</span>
+                        </h1>
+                        <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg">
+                            Nikmati streaming tanpa buffering, gaming tanpa lag, dan download super cepat dengan infrastruktur fiber optic terbaru kami.
+                        </p>
 
-                <!-- Card 2 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-green-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#paket" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-brand-600 rounded-full hover:bg-brand-700 transition shadow-xl shadow-brand-200">
+                                Mulai Berlangganan
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-slate-700 border border-slate-200 rounded-full hover:border-brand-600 hover:text-brand-600 transition bg-white">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                WhatsApp Kami
+                            </a>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Pengguna</h3>
+                        
+                        <div class="mt-8 flex items-center gap-2 text-sm text-slate-500">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>Instalasi Cepat 1-3 Hari Kerja</span>
+                        </div>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        Kelola pengguna dan akses dengan mudah. Pantau aktivitas dan atur izin pengguna.
-                    </p>
-                    <a href="#" class="text-green-600 hover:text-green-700 font-medium">
-                        Kelola Pengguna →
-                    </a>
-                </div>
 
-                <!-- Card 3 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-purple-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
+                    <div class="relative order-1 lg:order-2">
+                         <div class="absolute -inset-4 bg-gradient-to-tr from-brand-100 to-purple-50 rounded-full blur-3xl opacity-60 -z-10"></div>
+                        <img src="{{ asset('assets/dummy-card.jpg') }}" alt="Internet Cepat" class="relative w-full rounded-2xl shadow-2xl shadow-slate-200 transform hover:-translate-y-2 transition duration-500">
+                        
+                        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 animate-bounce-slow max-w-xs">
+                            <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Speed Test</p>
+                                <p class="text-xl text-slate-900">100 Mbps</p>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Laporan</h3>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        Generate dan unduh laporan lengkap dalam berbagai format untuk kebutuhan bisnis Anda.
-                    </p>
-                    <a href="#" class="text-purple-600 hover:text-purple-700 font-medium">
-                        Buat Laporan →
-                    </a>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-yellow-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Keuangan</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Pantau keuangan dan transaksi dengan detail. Kelola anggaran dan laporan keuangan.
-                    </p>
-                    <a href="#" class="text-yellow-600 hover:text-yellow-700 font-medium">
-                        Lihat Keuangan →
-                    </a>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-red-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Pengaturan</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Konfigurasi sistem, pengaturan aplikasi, dan preferensi sesuai kebutuhan Anda.
-                    </p>
-                    <a href="#" class="text-red-600 hover:text-red-700 font-medium">
-                        Buka Pengaturan →
-                    </a>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 p-3 rounded-lg">
-                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 ml-4">Notifikasi</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        Kelola notifikasi dan tetap update dengan aktivitas terbaru dari sistem.
-                    </p>
-                    <a href="#" class="text-indigo-600 hover:text-indigo-700 font-medium">
-                        Lihat Notifikasi →
-                    </a>
                 </div>
             </div>
         </section>
+
+        <section class="py-20 bg-slate-50 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Kenapa Harus CSM.TV?</h2>
+                    <p class="text-slate-500 max-w-2xl mx-auto">Kami menggabungkan teknologi terbaik dengan pelayanan sepenuh hati untuk pengalaman internet terbaik Anda.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    @foreach([
+                        ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'title' => 'Internet Stabil', 'desc' => 'Koneksi anti putus dengan teknologi fiber optic murni.'],
+                        ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Harga Terjangkau', 'desc' => 'Biaya bulanan transparan, tanpa biaya tersembunyi.'],
+                        ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Support 24/7', 'desc' => 'Bantuan teknis siap sedia kapanpun Anda butuhkan.'],
+                        ['icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'title' => 'Teknisi Ahli', 'desc' => 'Pemasangan rapi dan profesional oleh tim bersertifikat.']
+                    ] as $item)
+                    <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-brand-200 transition duration-300 group">
+                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 mb-6 group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $item['title'] }}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">{{ $item['desc'] }}</p>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section id="paket" class="py-24">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-2 block">Pilihan Paket</span>
+                    <h2 class="text-3xl lg:text-5xl font-extrabold text-slate-900">Paket Internet Rumah</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Basic</h3>
+                        <p class="text-sm text-slate-500 mb-6">Untuk penggunaan ringan.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-slate-900">149rb</span>
+                            <span class="text-slate-500">/bulan</span>
+                        </div>
+                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
+                            30 <span class="text-sm font-medium text-slate-500">Mbps</span>
+                        </div>
+                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Standard</h3>
+                        <p class="text-sm text-slate-500 mb-6">Ideal untuk keluarga kecil.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-slate-900">199rb</span>
+                            <span class="text-slate-500">/bulan</span>
+                        </div>
+                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
+                            50 <span class="text-sm font-medium text-slate-500">Mbps</span>
+                        </div>
+                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-2xl relative flex flex-col transform lg:-translate-y-4">
+                        <div class="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Terlaris</div>
+                        <h3 class="text-lg font-bold text-white mb-1">Paket Premium</h3>
+                        <p class="text-sm text-slate-400 mb-6">Streaming 4K & Gaming lancar.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">299rb</span>
+                            <span class="text-slate-400">/bulan</span>
+                        </div>
+                        <div class="text-3xl font-black text-brand-400 mb-6 flex items-center gap-2 text-slate-100">
+                            100 <span class="text-sm font-medium text-slate-400">Mbps</span>
+                        </div>
+                        <ul class="mb-8 space-y-3 text-sm text-slate-300">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Prioritas Trafik</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> IP Public Dynamic</li>
+                        </ul>
+                        <a href="#" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition text-center shadow-lg shadow-brand-900/50 mt-auto">Pilih Paket Ini</a>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Ultimate</h3>
+                        <p class="text-sm text-slate-500 mb-6">Bisnis & Heavy User.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-slate-900">499rb</span>
+                            <span class="text-slate-500">/bulan</span>
+                        </div>
+                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
+                            200 <span class="text-sm font-medium text-slate-500">Mbps</span>
+                        </div>
+                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12 flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Performa Jaringan & Tim</h3>
+                        <p class="text-slate-500 mb-6 leading-relaxed">Kami bangga dengan dedikasi tim kami. Skor kepuasan pelanggan dan stabilitas jaringan kami adalah bukti komitmen CSM.TV.</p>
+                        
+                        <div class="mb-2 flex justify-between text-sm font-bold">
+                            <span class="text-slate-700">Network Uptime</span>
+                            <span class="text-brand-600">99.9%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden mb-6">
+                            <div class="bg-brand-600 h-full rounded-full" style="width: 99.9%"></div>
+                        </div>
+
+                        <div class="mb-2 flex justify-between text-sm font-bold">
+                            <span class="text-slate-700">Customer Satisfaction (Teamwork)</span>
+                            <span class="text-brand-600">85%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                            <div class="bg-brand-600 h-full rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/3 text-center border-l border-slate-100 pl-0 md:pl-12">
+                        <div class="text-5xl font-black text-slate-900 mb-2">24/7</div>
+                        <p class="text-slate-500 font-medium">Support Monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        
+        <div class="text-center mb-16">
+            <span class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-2 block">Pusat Bantuan</span>
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900">Pertanyaan Umum</h2>
+            <p class="mt-4 text-slate-500">Jawaban cepat untuk pertanyaan yang sering diajukan.</p>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+            
+            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
+                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Bagaimana cara mendaftar?</span>
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
+                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                </button>
+                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
+                    <div class="overflow-hidden">
+                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
+                            <p>Cukup klik tombol <a href="#register" class="text-brand-600 font-semibold hover:underline">Daftar</a> di menu atas, atau hubungi kami via WhatsApp. Tim sales kami akan memandu Anda mengisi formulir dan menjadwalkan survei lokasi dalam waktu 1x24 jam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
+                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Berapa lama proses pemasangan?</span>
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
+                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                </button>
+                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
+                    <div class="overflow-hidden">
+                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
+                            Estimasi pemasangan adalah <strong>1-3 hari kerja</strong> setelah pembayaran administrasi dikonfirmasi. Waktu ini bergantung pada ketersediaan slot teknisi di area Anda dan kondisi cuaca saat pemasangan.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
+                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Apakah ada biaya tersembunyi?</span>
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
+                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                </button>
+                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
+                    <div class="overflow-hidden">
+                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
+                            Tidak ada. Harga yang tertera adalah harga bulanan flat (belum termasuk PPN 11%). Biaya instalasi dan perangkat dibayarkan satu kali di awal pendaftaran, selebihnya Anda hanya membayar tagihan bulanan yang tetap.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
+                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Bagaimana jika internet gangguan?</span>
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
+                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                </button>
+                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
+                    <div class="overflow-hidden">
+                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
+                            Tim support kami siaga 24/7. Anda bisa melaporkan gangguan melalui WhatsApp Customer Service atau Dashboard Pelanggan. Teknisi kami akan merespons dan melakukan perbaikan sesegera mungkin.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleFaq(button) {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        const isAlreadyOpen = content.style.gridTemplateRows === '1fr';
+
+        // 1. Tutup SEMUA item lain terlebih dahulu (Accordion effect)
+        document.querySelectorAll('.faq-content').forEach(el => {
+            el.style.gridTemplateRows = '0fr';
+        });
+        document.querySelectorAll('.faq-icon').forEach(el => {
+            el.classList.remove('rotate-180');
+        });
+
+        // 2. Jika item yang diklik belum terbuka, maka buka.
+        // Jika sudah terbuka, biarkan tertutup (karena langkah 1 sudah menutupnya)
+        if (!isAlreadyOpen) {
+            content.style.gridTemplateRows = '1fr';
+            icon.classList.add('rotate-180');
+        }
+    }
+</script>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-16">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-2xl font-bold mb-4">{{ config('app.name', 'Laravel') }}</h3>
-                    <p class="text-gray-400 mb-4">
-                        Platform terdepan untuk mengelola dan memantau aktivitas Anda dengan mudah dan efisien.
+    <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2 lg:col-span-2">
+                    <a href="{{ route('home') }}" class="text-2xl font-extrabold text-slate-900 tracking-tighter">CSM.TV</a>
+                    <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-xs">
+                        Penyedia layanan internet fiber optic terpercaya. Kami menghubungkan Anda dengan dunia melalui infrastruktur digital terbaik.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                    </svg>
-                                </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
-                                    </svg>
-                                </a>
-                    </div>
                 </div>
-
-                <!-- Quick Links -->
+                
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Tautan Cepat</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Beranda</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Tentang Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Layanan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Kontak</a></li>
+                    <h4 class="font-bold text-slate-900 mb-4">Perusahaan</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="{{ route('about') }}" class="hover:text-brand-600 transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition">Karir</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition">Blog</a></li>
                     </ul>
                 </div>
 
-                <!-- Support -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Bantuan</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Dokumentasi</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pusat Bantuan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Kebijakan Privasi</a></li>
+                    <h4 class="font-bold text-slate-900 mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#paket" class="hover:text-brand-600 transition">Internet Rumah</a></li>
+                        <li><a href="#paket" class="hover:text-brand-600 transition">Internet Bisnis</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition">Dedicated</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-4">Bantuan</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#faq" class="hover:text-brand-600 transition">Pusat Bantuan</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition">Kontak</a></li>
+                        <li><a href="#" class="hover:text-brand-600 transition">Cek Area</a></li>
                     </ul>
                 </div>
             </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.</p>
+            
+            <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-400">&copy; {{ date('Y') }} CSM.TV. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-slate-400 hover:text-brand-600 transition">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-2.347 5.753a6.16 6.16 0 106.16 6.16 6.161 6.161 0 00-6.16-6.16zM12 9.122a3.486 3.486 0 11-3.486 3.486A3.487 3.487 0 0112 9.122zM19.166 5.86a1.026 1.026 0 11-1.026-1.026 1.026 1.026 0 011.026 1.026z" clip-rule="evenodd" /></svg>
+                    </a>
                 </div>
+            </div>
         </div>
     </footer>
-    </body>
+
+    <script>
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            // Toggle current
+            const isClosed = content.style.gridTemplateRows === '0fr' || getComputedStyle(content).gridTemplateRows === '0px';
+            
+            // Reset all others (optional, if you want only one open at a time)
+            document.querySelectorAll('.faq-content').forEach(el => {
+                el.style.gridTemplateRows = '0fr';
+                el.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+            });
+
+            if (isClosed) {
+                content.style.gridTemplateRows = '1fr';
+                icon.classList.add('rotate-180');
+            } else {
+                content.style.gridTemplateRows = '0fr'; // Close if already open
+                icon.classList.remove('rotate-180');
+            }
+        }
+    </script>
+</body>
 </html>
