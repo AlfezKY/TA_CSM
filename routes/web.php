@@ -10,8 +10,14 @@ use App\Http\Controllers\AuthController;
 
 // Route Home
 Route::get('/', function () {
-    return view('welcome');
+    $packets = \App\Models\Paket::all();
+    return view('welcome', compact('packets'));
 })->name('home');
+
+// Route About
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 // Route Authentication
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

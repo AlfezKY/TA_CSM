@@ -48,7 +48,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-gray-600 text-sm mb-1">Total Tagihan</p>
-                        <p class="text-3xl font-bold text-gray-900">0</p>
+                        <p class="text-3xl font-bold text-gray-900">{{ $totalTagihan ?? 0 }}</p>
                     </div>
                     <div class="bg-yellow-100 p-3 rounded-lg">
                         <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,16 +65,16 @@
             <div class="bg-white rounded-lg shadow-md p-6">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-gray-600 text-sm mb-1">Tagihan Belum Lunas</p>
+                        <p class="text-gray-600 text-sm mb-1">Approval Pelanggan</p>
                         <p class="text-3xl font-bold text-gray-900">0</p>
                     </div>
                     <div class="bg-red-100 p-3 rounded-lg">
                         <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                         </svg>
                     </div>
                 </div>
-                <a href="{{ route('tagihan.index') }}" class="text-red-600 hover:text-red-700 text-sm font-medium mt-4 inline-block">
+                <a href="{{ route('dashboard') }}" class="text-red-600 hover:text-red-700 text-sm font-medium mt-4 inline-block">
                     Lihat Detail →
                 </a>
             </div>

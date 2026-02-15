@@ -226,54 +226,73 @@
         </section>
 
     </main>
-
-    <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
-                <div class="col-span-2 lg:col-span-2">
-                    <a href="{{ route('home') }}" class="text-2xl font-extrabold text-slate-900 tracking-tighter">CSM.TV</a>
-                    <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-xs">
-                        Penyedia layanan internet fiber optic terpercaya. Kami menghubungkan Anda dengan dunia melalui infrastruktur digital terbaik.
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <a href="#" class="text-2xl font-extrabold tracking-tighter text-white">
+                        CSM<span class="text-brand-600">.TV</span>
+                    </a>
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        Penyedia layanan internet fiber optic ultra cepat untuk kebutuhan rumah dan bisnis Anda.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Perusahaan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-brand-600 transition">Tentang Kami</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Karir</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Blog</a></li>
+                    <h4 class="text-white font-bold mb-6">Perusahaan</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('about') }}" class="hover:text-brand-500 transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Karir</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Partner</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Layanan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-brand-600 transition">Internet Rumah</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Internet Bisnis</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Dedicated</a></li>
+                    <h4 class="text-white font-bold mb-6">Dukungan</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-brand-500 transition">Pusat Bantuan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Cek Jangkauan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Info Tagihan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Laporkan Gangguan</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Bantuan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-brand-600 transition">Pusat Bantuan</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Kontak</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Cek Area</a></li>
+                    <h4 class="text-white font-bold mb-6">Hubungi Kami</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Jl. Teknologi No. 123,<br>Jakarta Selatan, Indonesia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span>(021) 555-0123</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>support@csm.tv</span>
+                        </li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <p>&copy; {{ date('Y') }} CSM.TV. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                </div>
+                <div class="flex gap-4">
+    <a href="#" class="text-slate-400 hover:text-brand-600 transition">
+        <span class="sr-only">Kembali ke atas</span>
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+</div>
             </div>
             
-            <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-slate-400">&copy; {{ date('Y') }} CSM.TV. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-slate-400 hover:text-brand-600 transition">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-2.347 5.753a6.16 6.16 0 106.16 6.16 6.161 6.161 0 00-6.16-6.16zM12 9.122a3.486 3.486 0 11-3.486 3.486A3.487 3.487 0 0112 9.122zM19.166 5.86a1.026 1.026 0 11-1.026-1.026 1.026 1.026 0 011.026 1.026z" clip-rule="evenodd" /></svg>
-                    </a>
-                </div>
-            </div>
         </div>
     </footer>
 </body>

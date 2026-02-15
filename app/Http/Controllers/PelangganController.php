@@ -12,11 +12,6 @@ class PelangganController extends Controller
 {
     public function index(Request $request)
     {
-        // Validasi: Update status_pembayaran menjadi 'Belum Lunas' jika jatuh_tempo >= hari ini
-        Pelanggan::whereDate('jatuh_tempo', '>=', Carbon::today())
-            ->where('status_pembayaran', '!=', 'Belum Lunas')
-            ->update(['status_pembayaran' => 'Belum Lunas']);
-        
         $query = Pelanggan::query();
         
         // Filter berdasarkan nama pelanggan jika ada parameter search
@@ -50,22 +45,12 @@ class PelangganController extends Controller
 
     public function show(string $id)
     {
-        // Validasi: Update status_pembayaran menjadi 'Belum Lunas' jika jatuh_tempo >= hari ini
-        Pelanggan::whereDate('jatuh_tempo', '>=', Carbon::today())
-            ->where('status_pembayaran', '!=', 'Belum Lunas')
-            ->update(['status_pembayaran' => 'Belum Lunas']);
-        
         $pelanggan = Pelanggan::findOrFail($id);
         return view('pelanggan.show', compact('pelanggan'));
     }
 
     public function edit(string $id)
     {
-        // Validasi: Update status_pembayaran menjadi 'Belum Lunas' jika jatuh_tempo >= hari ini
-        Pelanggan::whereDate('jatuh_tempo', '>=', Carbon::today())
-            ->where('status_pembayaran', '!=', 'Belum Lunas')
-            ->update(['status_pembayaran' => 'Belum Lunas']);
-        
         $pelanggan = Pelanggan::findOrFail($id);
         $paket = Paket::orderBy('Nama_Produk')->get();
         return view('pelanggan.edit', compact('pelanggan', 'paket'));

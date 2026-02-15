@@ -21,14 +21,15 @@
                         brand: {
                             50: '#eef2ff',
                             100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
                             600: '#4f46e5', // Indigo utama
                             700: '#4338ca',
+                            800: '#3730a3',
                             900: '#312e81',
                         }
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
-                        'glow': '0 0 15px rgba(79, 70, 229, 0.3)'
                     }
                 }
             }
@@ -39,15 +40,12 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Accordion Animation */
         .faq-content {
             transition: grid-template-rows 0.3s ease-out;
         }
-        .faq-content[aria-expanded="false"] { grid-template-rows: 0fr; }
-        .faq-content[aria-expanded="true"] { grid-template-rows: 1fr; }
     </style>
 </head>
-<body class="bg-white text-slate-800 antialiased selection:bg-brand-600 selection:text-white">
+<body class="bg-white text-slate-800 antialiased selection:bg-brand-600 selection:text-white" id="top">
 
     <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -96,74 +94,148 @@
         <section id="home" class="py-20 lg:py-32 overflow-hidden">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                    
                     <div class="order-2 lg:order-1">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider mb-6">
-                            <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-6">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             Promo Spesial
                         </div>
                         <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
-                            Paket Internet <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Premium & Cepat.</span>
+                            Internet Rumah <br>
+                            <span class="text-brand-600">Cepat & Stabil.</span>
                         </h1>
                         <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg">
                             Nikmati streaming tanpa buffering, gaming tanpa lag, dan download super cepat dengan infrastruktur fiber optic terbaru kami.
                         </p>
 
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#paket" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-brand-600 rounded-full hover:bg-brand-700 transition shadow-xl shadow-brand-200">
+                            <a href="#paket" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition">
                                 Mulai Berlangganan
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </a>
-                            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-slate-700 border border-slate-200 rounded-full hover:border-brand-600 hover:text-brand-600 transition bg-white">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-slate-700 border border-slate-200 rounded-full hover:border-slate-900 transition bg-white">
                                 WhatsApp Kami
                             </a>
-                        </div>
-                        
-                        <div class="mt-8 flex items-center gap-2 text-sm text-slate-500">
-                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span>Instalasi Cepat 1-3 Hari Kerja</span>
                         </div>
                     </div>
 
                     <div class="relative order-1 lg:order-2">
                          <div class="absolute -inset-4 bg-gradient-to-tr from-brand-100 to-purple-50 rounded-full blur-3xl opacity-60 -z-10"></div>
                         <img src="{{ asset('assets/dummy-card.jpg') }}" alt="Internet Cepat" class="relative w-full rounded-2xl shadow-2xl shadow-slate-200 transform hover:-translate-y-2 transition duration-500">
-                        
-                        <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 animate-bounce-slow max-w-xs">
-                            <div class="w-12 h-12 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Speed Test</p>
-                                <p class="text-xl text-slate-900">100 Mbps</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 bg-slate-50 border-y border-slate-100">
+        <section id="paket" class="py-24 bg-white relative">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Kenapa Harus CSM.TV?</h2>
-                    <p class="text-slate-500 max-w-2xl mx-auto">Kami menggabungkan teknologi terbaik dengan pelayanan sepenuh hati untuk pengalaman internet terbaik Anda.</p>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                        Pilihan Paket
+                    </h2>
+                    <p class="text-slate-500 text-lg max-w-2xl mx-auto">
+                        Harga transparan, sudah termasuk pajak, tanpa biaya tersembunyi.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+                    @foreach($packets as $packet)
+                        @php
+                            // Cek Best Seller
+                            $isBestSeller = str_contains(strtolower($packet->Nama_Produk), 'senyum');
+                        @endphp
+
+                        <div class="relative flex flex-col h-full rounded-2xl p-8 transition-all duration-300 overflow-hidden group
+                            {{ $isBestSeller 
+                                ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/20 scale-105 z-10 hover:scale-110 hover:shadow-2xl hover:shadow-slate-900/40' 
+                                : 'bg-white text-slate-900 border border-slate-200 hover:border-brand-600 hover:shadow-xl hover:-translate-y-2' 
+                            }}">
+
+                            @if($isBestSeller)
+                                <div class="absolute top-0 right-0 w-32 h-32 overflow-hidden pointer-events-none">
+                                    <div class="absolute top-[20px] -right-[40px] w-[150px] transform rotate-45 bg-brand-600 text-slate-900 font-extrabold text-[10px] uppercase tracking-widest py-1.5 text-center shadow-sm">
+                                        Terlaris
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="mb-6">
+                                <h3 class="text-lg font-bold mb-4 {{ $isBestSeller ? 'text-white' : 'text-slate-900 group-hover:text-brand-600 transition-colors' }}">
+                                    {{ $packet->Nama_Produk }}
+                                </h3>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-4xl font-black tracking-tight {{ $isBestSeller ? 'text-white' : 'text-slate-900' }}">
+                                        {{ str_replace(['Rp.', 'Rp'], '', $packet->Harga_Produk) }}
+                                    </span>
+                                    <span class="text-xs font-bold uppercase {{ $isBestSeller ? 'text-slate-400' : 'text-slate-400' }}">/bln</span>
+                                </div>
+                            </div>
+
+                            <div class="text-3xl font-black mb-6 flex items-baseline gap-1 {{ $isBestSeller ? 'text-brand-400' : 'text-brand-600' }}">
+                                {{ trim(str_ireplace('Mbps', '', $packet->Jenis_Produk)) }}
+                                <span class="text-sm font-bold {{ $isBestSeller ? 'text-slate-400' : 'text-slate-500' }}">Mbps</span>
+                            </div>
+
+                            <div class="space-y-6 mb-8 flex-grow">
+                                <p class="text-sm leading-relaxed {{ $isBestSeller ? 'text-slate-300' : 'text-slate-500' }}">
+                                    {{ $packet->Deskripsi_Produk }}
+                                </p>
+
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3 text-sm font-medium {{ $isBestSeller ? 'text-slate-200' : 'text-slate-600' }}">
+                                        <svg class="w-5 h-5 {{ $isBestSeller ? 'text-brand-400' : 'text-brand-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        Unlimited Tanpa FUP
+                                    </li>
+                                    <li class="flex items-center gap-3 text-sm font-medium {{ $isBestSeller ? 'text-slate-200' : 'text-slate-600' }}">
+                                        <svg class="w-5 h-5 {{ $isBestSeller ? 'text-brand-400' : 'text-brand-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        Fiber Optic 100%
+                                    </li>
+                                    <li class="flex items-center gap-3 text-sm font-medium {{ $isBestSeller ? 'text-slate-200' : 'text-slate-600' }}">
+                                        <svg class="w-5 h-5 {{ $isBestSeller ? 'text-brand-400' : 'text-brand-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        Support Prioritas
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto">
+                                <a href="https://wa.me/6281234567890?text=Halo, saya mau paket {{ $packet->Nama_Produk }}" 
+                                   class="w-full block py-3.5 px-6 rounded-xl font-bold text-center text-sm transition-all duration-300
+                                   {{ $isBestSeller 
+                                        ? 'bg-brand-600 text-white shadow-lg hover:bg-brand-500 hover:shadow-brand-600/40' 
+                                        : 'bg-white border-2 border-slate-200 text-slate-700 group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white' 
+                                   }}">
+                                    Pilih Paket
+                                </a>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-[20%] -right-[10%] w-[500px] h-[500px] bg-brand-50 rounded-full blur-3xl opacity-60"></div>
+                <div class="absolute top-[60%] -left-[10%] w-[400px] h-[400px] bg-purple-50 rounded-full blur-3xl opacity-60"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Kenapa Memilih Kami?</h2>
+                    <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Kami berkomitmen memberikan pengalaman internet terbaik untuk mendukung produktivitas digital Anda.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     @foreach([
-                        ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'title' => 'Internet Stabil', 'desc' => 'Koneksi anti putus dengan teknologi fiber optic murni.'],
-                        ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Harga Terjangkau', 'desc' => 'Biaya bulanan transparan, tanpa biaya tersembunyi.'],
-                        ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Support 24/7', 'desc' => 'Bantuan teknis siap sedia kapanpun Anda butuhkan.'],
-                        ['icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'title' => 'Teknisi Ahli', 'desc' => 'Pemasangan rapi dan profesional oleh tim bersertifikat.']
+                        ['icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'title' => 'Internet Stabil', 'desc' => 'Koneksi fiber optik anti putus dengan latensi rendah.', 'color' => 'bg-blue-50 text-blue-600'],
+                        ['icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2', 'title' => 'Harga Flat', 'desc' => 'Bayar sesuai paket. Tanpa biaya tersembunyi.', 'color' => 'bg-green-50 text-green-600'],
+                        ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'title' => 'Support 24/7', 'desc' => 'Tim teknis siap membantu kendala Anda kapanpun.', 'color' => 'bg-purple-50 text-purple-600'],
+                        ['icon' => 'M9 12l2 2 4-4', 'title' => 'Teknisi Ahli', 'desc' => 'Pemasangan cepat, rapi, dan profesional.', 'color' => 'bg-orange-50 text-orange-600']
                     ] as $item)
-                    <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-brand-200 transition duration-300 group">
-                        <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center text-brand-600 mb-6 group-hover:scale-110 transition-transform">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"/></svg>
+                    <div class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/60 hover:-translate-y-1 transition-all duration-300">
+                        <div class="w-14 h-14 {{ $item['color'] }} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $item['icon'] }}"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $item['title'] }}</h3>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">{{ $item['title'] }}</h3>
                         <p class="text-slate-500 text-sm leading-relaxed">{{ $item['desc'] }}</p>
                     </div>
                     @endforeach
@@ -171,256 +243,110 @@
             </div>
         </section>
 
-        <section id="paket" class="py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <span class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-2 block">Pilihan Paket</span>
-                    <h2 class="text-3xl lg:text-5xl font-extrabold text-slate-900">Paket Internet Rumah</h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Basic</h3>
-                        <p class="text-sm text-slate-500 mb-6">Untuk penggunaan ringan.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">149rb</span>
-                            <span class="text-slate-500">/bulan</span>
-                        </div>
-                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
-                            30 <span class="text-sm font-medium text-slate-500">Mbps</span>
-                        </div>
-                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
-                    </div>
-
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Standard</h3>
-                        <p class="text-sm text-slate-500 mb-6">Ideal untuk keluarga kecil.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">199rb</span>
-                            <span class="text-slate-500">/bulan</span>
-                        </div>
-                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
-                            50 <span class="text-sm font-medium text-slate-500">Mbps</span>
-                        </div>
-                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
-                    </div>
-
-                    <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-2xl relative flex flex-col transform lg:-translate-y-4">
-                        <div class="absolute top-0 right-0 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">Terlaris</div>
-                        <h3 class="text-lg font-bold text-white mb-1">Paket Premium</h3>
-                        <p class="text-sm text-slate-400 mb-6">Streaming 4K & Gaming lancar.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-white">299rb</span>
-                            <span class="text-slate-400">/bulan</span>
-                        </div>
-                        <div class="text-3xl font-black text-brand-400 mb-6 flex items-center gap-2 text-slate-100">
-                            100 <span class="text-sm font-medium text-slate-400">Mbps</span>
-                        </div>
-                        <ul class="mb-8 space-y-3 text-sm text-slate-300">
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Prioritas Trafik</li>
-                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> IP Public Dynamic</li>
-                        </ul>
-                        <a href="#" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition text-center shadow-lg shadow-brand-900/50 mt-auto">Pilih Paket Ini</a>
-                    </div>
-
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-brand-300 hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <h3 class="text-lg font-bold text-slate-900 mb-1">Paket Ultimate</h3>
-                        <p class="text-sm text-slate-500 mb-6">Bisnis & Heavy User.</p>
-                        <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">499rb</span>
-                            <span class="text-slate-500">/bulan</span>
-                        </div>
-                        <div class="text-2xl font-black text-brand-600 mb-6 flex items-center gap-2">
-                            200 <span class="text-sm font-medium text-slate-500">Mbps</span>
-                        </div>
-                        <a href="#" class="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-700 font-bold hover:border-brand-600 hover:text-brand-600 transition text-center mt-auto">Pilih Paket</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 bg-slate-50 border-t border-slate-100">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-12 flex flex-col md:flex-row items-center gap-12">
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Performa Jaringan & Tim</h3>
-                        <p class="text-slate-500 mb-6 leading-relaxed">Kami bangga dengan dedikasi tim kami. Skor kepuasan pelanggan dan stabilitas jaringan kami adalah bukti komitmen CSM.TV.</p>
-                        
-                        <div class="mb-2 flex justify-between text-sm font-bold">
-                            <span class="text-slate-700">Network Uptime</span>
-                            <span class="text-brand-600">99.9%</span>
-                        </div>
-                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden mb-6">
-                            <div class="bg-brand-600 h-full rounded-full" style="width: 99.9%"></div>
-                        </div>
-
-                        <div class="mb-2 flex justify-between text-sm font-bold">
-                            <span class="text-slate-700">Customer Satisfaction (Teamwork)</span>
-                            <span class="text-brand-600">85%</span>
-                        </div>
-                        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                            <div class="bg-brand-600 h-full rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/3 text-center border-l border-slate-100 pl-0 md:pl-12">
-                        <div class="text-5xl font-black text-slate-900 mb-2">24/7</div>
-                        <p class="text-slate-500 font-medium">Support Monitoring</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="faq" class="py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-6">
-        
-        <div class="text-center mb-16">
-            <span class="text-brand-600 font-bold tracking-wider uppercase text-sm mb-2 block">Pusat Bantuan</span>
-            <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900">Pertanyaan Umum</h2>
-            <p class="mt-4 text-slate-500">Jawaban cepat untuk pertanyaan yang sering diajukan.</p>
-        </div>
+            <div class="max-w-3xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900">Pertanyaan Umum</h2>
+                </div>
 
-        <div class="space-y-4" id="faq-container">
-            
-            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
-                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
-                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Bagaimana cara mendaftar?</span>
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
-                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                </button>
-                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
-                    <div class="overflow-hidden">
-                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
-                            <p>Cukup klik tombol <a href="#register" class="text-brand-600 font-semibold hover:underline">Daftar</a> di menu atas, atau hubungi kami via WhatsApp. Tim sales kami akan memandu Anda mengisi formulir dan menjadwalkan survei lokasi dalam waktu 1x24 jam.</p>
+                <div class="space-y-4" id="faq-container">
+                    @php
+                        $faqs = [
+                            ['q' => 'Bagaimana cara mendaftar?', 'a' => 'Cukup klik tombol Daftar atau hubungi WhatsApp kami.'],
+                            ['q' => 'Berapa lama proses pemasangan?', 'a' => 'Estimasi pemasangan adalah 1-3 hari kerja.'],
+                            ['q' => 'Apakah ada biaya tersembunyi?', 'a' => 'Tidak ada. Harga paket sudah termasuk PPN 11%.'],
+                        ];
+                    @endphp
+
+                    @foreach($faqs as $index => $faq)
+                    <div class="border-b border-slate-100">
+                        <button class="w-full py-4 text-left flex justify-between items-center focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-medium text-slate-900 group-hover:text-brand-600 transition">{{ $faq['q'] }}</span>
+                            <svg class="w-5 h-5 text-slate-400 transform transition-transform duration-300 group-hover:text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content overflow-hidden">
+                            <div class="min-h-[0px]">
+                                <div class="pb-4 text-slate-500 text-sm">
+                                    {{ $faq['a'] }}
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
-
-            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
-                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
-                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Berapa lama proses pemasangan?</span>
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
-                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                </button>
-                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
-                    <div class="overflow-hidden">
-                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
-                            Estimasi pemasangan adalah <strong>1-3 hari kerja</strong> setelah pembayaran administrasi dikonfirmasi. Waktu ini bergantung pada ketersediaan slot teknisi di area Anda dan kondisi cuaca saat pemasangan.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
-                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
-                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Apakah ada biaya tersembunyi?</span>
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
-                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                </button>
-                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
-                    <div class="overflow-hidden">
-                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
-                            Tidak ada. Harga yang tertera adalah harga bulanan flat (belum termasuk PPN 11%). Biaya instalasi dan perangkat dibayarkan satu kali di awal pendaftaran, selebihnya Anda hanya membayar tagihan bulanan yang tetap.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="group border border-slate-100 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
-                <button class="w-full px-6 py-5 md:px-8 text-left flex justify-between items-start md:items-center gap-4 focus:outline-none" onclick="toggleFaq(this)">
-                    <span class="font-bold text-slate-800 text-lg group-hover:text-brand-600 transition-colors">Bagaimana jika internet gangguan?</span>
-                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-brand-200 group-hover:text-brand-600 transition-all duration-300">
-                        <svg class="w-5 h-5 transform transition-transform duration-300 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </div>
-                </button>
-                <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out faq-content">
-                    <div class="overflow-hidden">
-                        <div class="px-6 pb-6 md:px-8 text-slate-600 leading-relaxed">
-                            Tim support kami siaga 24/7. Anda bisa melaporkan gangguan melalui WhatsApp Customer Service atau Dashboard Pelanggan. Teknisi kami akan merespons dan melakukan perbaikan sesegera mungkin.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<script>
-    function toggleFaq(button) {
-        const content = button.nextElementSibling;
-        const icon = button.querySelector('.faq-icon');
-        const isAlreadyOpen = content.style.gridTemplateRows === '1fr';
-
-        // 1. Tutup SEMUA item lain terlebih dahulu (Accordion effect)
-        document.querySelectorAll('.faq-content').forEach(el => {
-            el.style.gridTemplateRows = '0fr';
-        });
-        document.querySelectorAll('.faq-icon').forEach(el => {
-            el.classList.remove('rotate-180');
-        });
-
-        // 2. Jika item yang diklik belum terbuka, maka buka.
-        // Jika sudah terbuka, biarkan tertutup (karena langkah 1 sudah menutupnya)
-        if (!isAlreadyOpen) {
-            content.style.gridTemplateRows = '1fr';
-            icon.classList.add('rotate-180');
-        }
-    }
-</script>
+        </section>
 
     </main>
 
-    <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
-                <div class="col-span-2 lg:col-span-2">
-                    <a href="{{ route('home') }}" class="text-2xl font-extrabold text-slate-900 tracking-tighter">CSM.TV</a>
-                    <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-xs">
-                        Penyedia layanan internet fiber optic terpercaya. Kami menghubungkan Anda dengan dunia melalui infrastruktur digital terbaik.
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <a href="#" class="text-2xl font-extrabold tracking-tighter text-white">
+                        CSM<span class="text-brand-600">.TV</span>
+                    </a>
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        Penyedia layanan internet fiber optic ultra cepat untuk kebutuhan rumah dan bisnis Anda.
                     </p>
                 </div>
-                
+
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Perusahaan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="{{ route('about') }}" class="hover:text-brand-600 transition">Tentang Kami</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Karir</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Blog</a></li>
+                    <h4 class="text-white font-bold mb-6">Perusahaan</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('about') }}" class="hover:text-brand-500 transition">Tentang Kami</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Karir</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Partner</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Layanan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#paket" class="hover:text-brand-600 transition">Internet Rumah</a></li>
-                        <li><a href="#paket" class="hover:text-brand-600 transition">Internet Bisnis</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Dedicated</a></li>
+                    <h4 class="text-white font-bold mb-6">Dukungan</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-brand-500 transition">Pusat Bantuan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Cek Jangkauan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Info Tagihan</a></li>
+                        <li><a href="#" class="hover:text-brand-500 transition">Laporkan Gangguan</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-slate-900 mb-4">Bantuan</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#faq" class="hover:text-brand-600 transition">Pusat Bantuan</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Kontak</a></li>
-                        <li><a href="#" class="hover:text-brand-600 transition">Cek Area</a></li>
+                    <h4 class="text-white font-bold mb-6">Hubungi Kami</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Jl. Teknologi No. 123,<br>Jakarta Selatan, Indonesia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span>(021) 555-0123</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span>support@csm.tv</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-slate-400">&copy; {{ date('Y') }} CSM.TV. All rights reserved.</p>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <p>&copy; {{ date('Y') }} CSM.TV. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                </div>
+                
                 <div class="flex gap-4">
-                    <a href="#" class="text-slate-400 hover:text-brand-600 transition">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.48 2h-.165zm-2.347 5.753a6.16 6.16 0 106.16 6.16 6.161 6.161 0 00-6.16-6.16zM12 9.122a3.486 3.486 0 11-3.486 3.486A3.487 3.487 0 0112 9.122zM19.166 5.86a1.026 1.026 0 11-1.026-1.026 1.026 1.026 0 011.026 1.026z" clip-rule="evenodd" /></svg>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 transition" aria-label="Kembali ke atas">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                        </svg>
                     </a>
                 </div>
+                
             </div>
+            
         </div>
     </footer>
 
@@ -428,22 +354,14 @@
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('svg');
-            
-            // Toggle current
-            const isClosed = content.style.gridTemplateRows === '0fr' || getComputedStyle(content).gridTemplateRows === '0px';
-            
-            // Reset all others (optional, if you want only one open at a time)
-            document.querySelectorAll('.faq-content').forEach(el => {
-                el.style.gridTemplateRows = '0fr';
-                el.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
-            });
+            const isOpen = content.style.gridTemplateRows === '1fr';
 
-            if (isClosed) {
+            document.querySelectorAll('.faq-content').forEach(el => el.style.gridTemplateRows = '0fr');
+            document.querySelectorAll('.faq-container svg').forEach(el => el.classList.remove('rotate-180'));
+
+            if (!isOpen) {
                 content.style.gridTemplateRows = '1fr';
                 icon.classList.add('rotate-180');
-            } else {
-                content.style.gridTemplateRows = '0fr'; // Close if already open
-                icon.classList.remove('rotate-180');
             }
         }
     </script>
